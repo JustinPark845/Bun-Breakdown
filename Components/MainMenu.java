@@ -12,6 +12,7 @@ public class MainMenu {
     private static String mainMenuScreenOne;
     private static String mainMenuScreenTwo;
     private static String invalidInputScreen;
+    private static String tutorialScreen;
 
     public MainMenu() {
         makeFileManipulator();
@@ -26,6 +27,10 @@ public class MainMenu {
         line = systemScanner.nextLine();
         while(!line.equalsIgnoreCase("Start") && !line.equalsIgnoreCase("Level Selection") && !line.equalsIgnoreCase("Quit")) {
             if (line.equalsIgnoreCase("Wiggle Ears")) {
+                printMainMenu(false);
+            } else if (line.equalsIgnoreCase("Tutorial")) {
+                System.out.println(tutorialScreen);
+                systemScanner.nextLine();
                 printMainMenu(false);
             } else {
                 printMainMenu(true);
@@ -62,11 +67,13 @@ public class MainMenu {
         timeManipulator = new TimeManipulator();
     }
     private void makeMainMenuScreens() {
-        String tempMainMenuScreenOne = fileManipulator.readFile("./Screens/mainMenu.txt", 0, 17);
+        String tempMainMenuScreenOne = fileManipulator.readFile("./Screens/Menu/mainMenu.txt", 0, 17);
         mainMenuScreenOne = stringManipulator.removeLastNewLine(tempMainMenuScreenOne);
-        String tempMainMenuScreenTwo = fileManipulator.readFile("./Screens/mainMenu.txt", 18, 34);
+        String tempMainMenuScreenTwo = fileManipulator.readFile("./Screens/Menu/mainMenu.txt", 18, 34);
         mainMenuScreenTwo = stringManipulator.removeLastNewLine( tempMainMenuScreenTwo);
-        String tempInvalidInputScreen = fileManipulator.readFile("./Screens/mainMenu.txt", 35, 51);
+        String tempInvalidInputScreen = fileManipulator.readFile("./Screens/Menu/mainMenu.txt", 35, 51);
         invalidInputScreen = stringManipulator.removeLastNewLine(tempInvalidInputScreen);
+        String tempTutorialScreen = fileManipulator.readFile("./Screens/Menu/tutorial.txt", 0, 17);
+        tutorialScreen = stringManipulator.removeLastNewLine(tempTutorialScreen);
     }
 }

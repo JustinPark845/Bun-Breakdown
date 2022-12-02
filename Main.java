@@ -1,8 +1,8 @@
-import Components.BunBeatdown;
+import Components.BunBreakdown;
 
 public class Main {
     public static void main(String args[]) {
-        BunBeatdown bunBeatdown = new BunBeatdown();
+        BunBreakdown bunBeatdown = new BunBreakdown();
         bunBeatdown.setUp();
         bunBeatdown.play();
     }

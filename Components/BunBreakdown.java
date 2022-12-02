@@ -2,13 +2,13 @@ package Components;
 
 import java.util.Scanner;
 
-public class BunBeatdown {
+public class BunBreakdown {
     private static Scanner systemScanner = null;
     private static StartingScreen startingScreen = null;
     private static MainMenu mainMenu = null;
     private static GameHandler gameHandler = null;
 
-    public BunBeatdown() {
+    public BunBreakdown() {
         systemScanner = makeScanner();
         startingScreen = makeStartingScreen();
         mainMenu = makeMainMenu();
@@ -21,10 +21,8 @@ public class BunBeatdown {
 
     public void play() {
         String option = mainMenu.processMainMenu(systemScanner);
-        if (option.equalsIgnoreCase("Start")) {
-            System.out.print("Started!");
-        } else if (option.equalsIgnoreCase("Level Selection")) {
-            System.out.print("Level Selection!");
+        if ((option.equalsIgnoreCase("Start")) || option.equalsIgnoreCase("Level Selection")) {
+            gameHandler.processGameHandler(systemScanner, option);
         } else {
             close();
         }
