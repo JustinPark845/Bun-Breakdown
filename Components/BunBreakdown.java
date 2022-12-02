@@ -20,11 +20,13 @@ public class BunBreakdown {
     }
 
     public void play() {
-        String option = mainMenu.processMainMenu(systemScanner);
-        if ((option.equalsIgnoreCase("Start")) || option.equalsIgnoreCase("Level Selection")) {
-            gameHandler.processGameHandler(systemScanner, option);
-        } else {
-            close();
+        while (true) {
+            String option = mainMenu.processMainMenu(systemScanner);
+            if ((option.equalsIgnoreCase("Start")) || option.equalsIgnoreCase("Level Selection")) {
+                gameHandler.processGameHandler(systemScanner, option);
+            } else {
+                close();
+            }
         }
     }
 

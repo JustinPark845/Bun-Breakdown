@@ -2,12 +2,12 @@
 |                                                                                                               |
 |                                                                                                               |
 |                                                                                                               |
-|                                                                                                               |
 |           |-----------------------------------------------------------------------------------------|         |
-|           |                          This is a Pattern Recall Game!                                 |         |
+|           |                           This is a Pattern Recall Game!                                |         |
 |           |  Your opponent will first make a set of moves in the directions, left right up or down. |         |
 |           |    You will then have to replicate that pattern when the “your turn” screen shows up!   |         |
-|           |    You will be given the same amount of time as it took for the CPU to make the moves!  |         |
+|           |         up = "w" or "i", down = "s" or "k, left = "a" or "j", right = "d" or "l"        |         |
+|           |                  Press "Enter" when you have completed your input!                      |         |
 |           |        There will be a Rhythm to every pattern, so use that to your advantage :)        |         |
 |           |-----------------------------------------------------------------------------------------|         |
 |                ||                                                                                             |
