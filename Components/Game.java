@@ -98,7 +98,7 @@ public class Game {
                 } else {
                     printHearts(lives);
                     System.out.println(goodJobScreen);
-                    timeManipulator.sleepMilliseconds(500);
+                    timeManipulator.sleepMilliseconds(800);
                 }
                 answer1 = "";
                 answer2 = "";
@@ -117,13 +117,13 @@ public class Game {
 
     private void pauseTimer(String note, int lives) {
         if (note.equals("1")) {
-            timeManipulator.sleepMilliseconds(550);
+            timeManipulator.sleepMilliseconds(500);
             printBlank(lives);
-            timeManipulator.sleepMilliseconds(50);
+            timeManipulator.sleepMilliseconds(100);
         } else if (note.equals("2")) {
-            timeManipulator.sleepMilliseconds(250);
+            timeManipulator.sleepMilliseconds(200);
             printBlank(lives);
-            timeManipulator.sleepMilliseconds(50);
+            timeManipulator.sleepMilliseconds(100);
         }
     }
 

@@ -134,7 +134,7 @@ public class GameHandler {
     private void makeLevels() {
         // w = up, s = down, a = left, d = right, 1 = 1 second, 2 = 1/2 second, / = next round
         // Level 1
-        String level1sequence = "w1w1w1/w1w1w2w2w2w2/w1w1w1s1/w2w2w2w2s2s2s2s2/w1w1s2s2w2w2/w2s2w1s2w2s1/s2s2s2s2w2s2w2s2";
+        String level1sequence = "w1w1w1/w1w1w2w2w2w2/w1w1w1s1/w2w2w2w2s2s2s2s2/w1w1s2s2w2w2/w2s2w1s2w2s1/s2s2s2s2w2s2w2s2/";
         String level1animal = "default";
         String level1animalfile = "./Screens/defaultArrows.txt";
         levels.put("1",new Hashtable<String, String>(){{put("sequence",level1sequence);put("animal",level1animal);put("file",level1animalfile);}});
