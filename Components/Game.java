@@ -16,6 +16,7 @@ public class Game {
     private static List<String> countdownScreens = new ArrayList<String>();
     private static Hashtable<String, String> animalScreens = new Hashtable<String, String>();
     private static String blankScreen;
+    private static String turnScreen;
 
     public Game() {
         makeFileManipulator();
@@ -23,62 +24,65 @@ public class Game {
         makeTimeManipulator();
         makeCountdownScreens();
         makeBlankScreen();
+        makeTurnScreen();
     }
 
     public boolean processGame(Scanner systemScanner, String sequence, String animal, String filePath) {
         makeAnimalScreens(filePath);
-        countdown();
+        // countdown();
         return playGame(systemScanner, sequence, animal);
     }
 
     private boolean playGame(Scanner systemScanner, String sequence, String animal) {
         int lives = 3;
-        String answer = "";
+        String answer1 = "";
+        String answer2 = "";
         for (int i = 0; i < sequence.length(); i++) {
             if (lives < 1) {
                 return false;
             }
-            System.out.print("Lives: ");
-            for (int j = 0; j < lives; j++) {
-                System.out.print("♥️  ");
-            }
-            System.out.println();
-            System.out.println("here");
             String step = "" + sequence.charAt(i);
             if (step.equals("w")) {
-                answer += step;
+                answer1 += "w";
+                answer2 += "i";
+                printHearts(lives);
                 System.out.println(animalScreens.get("up"));
-                timeManipulator.sleepMilliseconds(400);
-                System.out.println(blankScreen);
-                timeManipulator.sleepMilliseconds(100);
+                i++;
+                String time = "" + sequence.charAt(i);
+                pauseTimer(time,lives);
             } else if (step.equals("s")) {
-                answer += step;
+                answer1 += "s";
+                answer2 += "k";
+                printHearts(lives);
                 System.out.println(animalScreens.get("down"));
-                timeManipulator.sleepMilliseconds(400);
-                System.out.println(blankScreen);
-                timeManipulator.sleepMilliseconds(100);
+                i++;
+                String time = "" + sequence.charAt(i);
+                pauseTimer(time,lives);
             } else if (step.equals("a")) {
-                answer += step;
+                answer1 += "a";
+                answer2 += "j";
+                printHearts(lives);
                 System.out.println(animalScreens.get("left"));
-                timeManipulator.sleepMilliseconds(400);
-                System.out.println(blankScreen);
-                timeManipulator.sleepMilliseconds(100);
+                i++;
+                String time = "" + sequence.charAt(i);
+                pauseTimer(time,lives);
             } else if (step.equals("d")) {
-                answer += step;
+                answer1 += "d";
+                answer2 += "l";
+                printHearts(lives);
                 System.out.println(animalScreens.get("right"));
-                timeManipulator.sleepMilliseconds(400);
-                System.out.println(blankScreen);
-                timeManipulator.sleepMilliseconds(100);
-            } else if (step.equals(" ")) {
-                timeManipulator.sleepMilliseconds(400);
-                System.out.println(blankScreen);
-                timeManipulator.sleepMilliseconds(100);
+                i++;
+                String time = "" + sequence.charAt(i);
+                pauseTimer(time,lives);
             } else {
+                printHearts(lives);
+                System.out.println(turnScreen);
                 String line = systemScanner.nextLine();
-                if (!line.equalsIgnoreCase(answer)) {
+                if (!line.equalsIgnoreCase(answer1) && !line.equalsIgnoreCase(answer2)) {
                     --lives;
                 }
-                answer = "";
+                answer1 = "";
+                answer2 = "";
             }
         }
         return true;
@@ -89,6 +93,34 @@ public class Game {
             System.out.println(countdownScreens.get(i));
             timeManipulator.sleepMilliseconds(1000);
         }
+    }
+
+    private void pauseTimer(String note, int lives) {
+        if (note.equals("1")) {
+            timeManipulator.sleepMilliseconds(550);
+            printBlank(lives);
+            timeManipulator.sleepMilliseconds(50);
+        } else if (note.equals("2")) {
+            timeManipulator.sleepMilliseconds(250);
+            printBlank(lives);
+            timeManipulator.sleepMilliseconds(50);
+        }
+    }
+
+    private void printHearts(int lives) {
+        System.out.print("Lives: ");
+        for (int j = 0; j < lives; j++) {
+            System.out.print("♥️  ");
+        }
+        System.out.println();
+    }
+    private void printBlank(int lives) {
+        System.out.print("Lives: ");
+        for (int j = 0; j < lives; j++) {
+            System.out.print("♥️  ");
+        }
+        System.out.println();
+        System.out.println(blankScreen);
     }
 
     private FileManipulator makeFileManipulator() {
@@ -124,5 +156,9 @@ public class Game {
     private void makeBlankScreen() {
         String tempBlankScreen = fileManipulator.readFile("./Screens/Game/blank.txt", 0, 16);
         blankScreen = stringManipulator.removeLastNewLine(tempBlankScreen);
+    }
+    private void makeTurnScreen() {
+        String tempTurnScreen = fileManipulator.readFile("./Screens/Game/turn.txt", 0, 16);
+        turnScreen = stringManipulator.removeLastNewLine(tempTurnScreen);
     }
 }

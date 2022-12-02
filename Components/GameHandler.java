@@ -1,7 +1,6 @@
 package Components;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
@@ -35,7 +34,7 @@ public class GameHandler {
 
     public void processGameHandler(Scanner systemScanner, String option) {
         if (option.equalsIgnoreCase("Start")) {
-            playIntro();
+            // playIntro();
             if (game.processGame(systemScanner, levels.get("1").get("sequence"), levels.get("1").get("animal"), levels.get("1").get("file"))) {
                 if (game.processGame(systemScanner, levels.get("2").get("sequence"), levels.get("2").get("animal"), levels.get("2").get("file"))) {
                     if (game.processGame(systemScanner, levels.get("3").get("sequence"), levels.get("3").get("animal"), levels.get("3").get("file"))) {
@@ -62,9 +61,9 @@ public class GameHandler {
     }
 
     private void makeLevels() {
-        // w = up, s = down, a = left, d = right, space = pause, / = next round
+        // w = up, s = down, a = left, d = right, 1 = 1 second, 2 = 1/2 second, / = next round
         // Level 1
-        String level1sequence = "w a s d / w w a a s s d d/ wwww/";
+        String level1sequence = "w1s1a2a2d1/ w w a a s s d d/ wwww/";
         String level1animal = "default";
         String level1animalfile = "./Screens/defaultArrows.txt";
         levels.put("1",new Hashtable<String, String>(){{put("sequence",level1sequence);put("animal",level1animal);put("file",level1animalfile);}});
