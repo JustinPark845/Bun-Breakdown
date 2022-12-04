@@ -21,6 +21,9 @@ public class GameHandler {
     private static Hashtable<String, Hashtable<String, String>> levels = new Hashtable<String, Hashtable<String, String>>();
     private static List<String> resultScreens = new ArrayList<String>();
     private static String levelClearScreen = null;
+    private static String levelOneScreen = null;
+    private static String levelTwoScreen = null;
+    private static String levelThreeScreen = null;
 
     public GameHandler() {
         makeFileManipulator();
@@ -37,42 +40,48 @@ public class GameHandler {
         if (option.equalsIgnoreCase("Start")) {
             playIntro();
             // Level 1
+            System.out.println(levelOneScreen);
+            systemScanner.nextLine();
             while (true) {
                 if (game.processGame(systemScanner, levels.get("1").get("sequence"), levels.get("1").get("animal"), levels.get("1").get("file"))) {
                     System.out.println(levelClearScreen);
                     systemScanner.nextLine();
-                    break;
-                } else {
-                    System.out.println(resultScreens.get(3));
-                    if (!"Continue".equalsIgnoreCase(systemScanner.nextLine())) {
-                        break;
-                    }
-                }
-            }
-            // Level 2
-            while (true) {
-                if (game.processGame(systemScanner, levels.get("2").get("sequence"), levels.get("2").get("animal"), levels.get("2").get("file"))) {
-                    System.out.println(levelClearScreen);
+                    // Level 2
+                    System.out.println(levelTwoScreen);
                     systemScanner.nextLine();
-                    break;
-                } else {
-                    System.out.println(resultScreens.get(3));
-                    if (!"Continue".equalsIgnoreCase(systemScanner.nextLine())) {
-                        break;
+                    while (true) {
+                        if (game.processGame(systemScanner, levels.get("2").get("sequence"), levels.get("2").get("animal"), levels.get("2").get("file"))) {
+                            System.out.println(levelClearScreen);
+                            systemScanner.nextLine();
+                            // Level 3
+                            System.out.println(levelThreeScreen);
+                            systemScanner.nextLine();
+                            while (true) {
+                                if (game.processGame(systemScanner, levels.get("3").get("sequence"), levels.get("3").get("animal"), levels.get("3").get("file"))) {
+                                    for (int i = 0; i < 6; i++) {
+                                        System.out.println(resultScreens.get(0));
+                                        timeManipulator.sleepMilliseconds(500);
+                                        System.out.println(resultScreens.get(1));
+                                        timeManipulator.sleepMilliseconds(500);
+                                    }
+                                    System.out.println(resultScreens.get(2));
+                                    systemScanner.nextLine();
+                                    break;
+                                } else {
+                                    System.out.println(resultScreens.get(3));
+                                    if (!"Continue".equalsIgnoreCase(systemScanner.nextLine())) {
+                                        break;
+                                    }
+                                }
+                            }
+                            break;
+                        } else {
+                            System.out.println(resultScreens.get(3));
+                            if (!"Continue".equalsIgnoreCase(systemScanner.nextLine())) {
+                                break;
+                            }
+                        }
                     }
-                }
-            }
-            // Level 3
-            while (true) {
-                if (game.processGame(systemScanner, levels.get("3").get("sequence"), levels.get("3").get("animal"), levels.get("3").get("file"))) {
-                    for (int i = 0; i < 6; i++) {
-                        System.out.println(resultScreens.get(0));
-                        timeManipulator.sleepMilliseconds(500);
-                        System.out.println(resultScreens.get(1));
-                        timeManipulator.sleepMilliseconds(500);
-                    }
-                    System.out.println(resultScreens.get(2));
-                    systemScanner.nextLine();
                     break;
                 } else {
                     System.out.println(resultScreens.get(3));
@@ -89,6 +98,9 @@ public class GameHandler {
                 level = systemScanner.nextLine();
             }
             if (level.equals("1")) {
+                // Level 1
+                System.out.println(levelOneScreen);
+                systemScanner.nextLine();
                 while (true) {
                     if (game.processGame(systemScanner, levels.get("1").get("sequence"), levels.get("1").get("animal"), levels.get("1").get("file"))) {
                         System.out.println(levelClearScreen);
@@ -102,6 +114,9 @@ public class GameHandler {
                     }
                 }
             } else if (level.equals("2")) {
+                // Level 2
+                System.out.println(levelTwoScreen);
+                systemScanner.nextLine();
                 while (true) {
                     if (game.processGame(systemScanner, levels.get("2").get("sequence"), levels.get("2").get("animal"), levels.get("2").get("file"))) {
                         System.out.println(levelClearScreen);
@@ -115,6 +130,9 @@ public class GameHandler {
                     }
                 }            
             } else if (level.equals("3")) {
+                // Level 3
+                System.out.println(levelThreeScreen);
+                systemScanner.nextLine();
                 while (true) {
                     if (game.processGame(systemScanner, levels.get("3").get("sequence"), levels.get("3").get("animal"), levels.get("3").get("file"))) {
                         System.out.println(levelClearScreen);
@@ -134,19 +152,19 @@ public class GameHandler {
     private void makeLevels() {
         // w = up, s = down, a = left, d = right, 1 = 1 second, 2 = 1/2 second, / = next round
         // Level 1
-        String level1sequence = "w1w1w1/w1w1w2w2w2w2/w1w1w1s1/w2w2w2w2s2s2s2s2/w1w1s2s2w2w2/w2s2w1s2w2s1/s2s2s2s2w2s2w2s2/";
-        String level1animal = "default";
-        String level1animalfile = "./Screens/defaultArrows.txt";
+        String level1sequence = "w1w1w1/w1w1w2w2w2w2/w1w1w1s1/w2w2w2w2s2s2s2s2/w1w1s2s2w2w2/w2s2w1s2w2s1/s2s2s2s2w2s2w2s2/w1w1w1w1s1s1s1s1w1w1w1w1a1d1/";
+        String level1animal = "cat";
+        String level1animalfile = "./Screens/Game/Animals/cat.txt";
         levels.put("1",new Hashtable<String, String>(){{put("sequence",level1sequence);put("animal",level1animal);put("file",level1animalfile);}});
         // Level 2
-        String level2sequence = "";
-        String level2animal = "frog";
-        String level2animalfile = "./Screens/defaultArrows.txt";
+        String level2sequence = "w1a1s1d1/w1d1s1a1/a1a2a2d1d2d2/w2w2a2a2s2s2d2d2/w2a2s2d2w2a2s2d2/s2s2s1w2w2w1d2d2d1a2a2a1/w1s1d1a1w2s2d2a2/d2d2d2d2d2d2d2a2d2a2a2a2a2a2a2a2/";
+        String level2animal = "bird";
+        String level2animalfile = "./Screens/Game/Animals/bird.txt";
         levels.put("2",new Hashtable<String, String>(){{put("sequence",level2sequence);put("animal",level2animal);put("file",level2animalfile);}});
         // Level 3
         String level3sequence = "";
-        String level3animal = "frog";
-        String level3animalfile = "./Screens/defaultArrows.txt";
+        String level3animal = "buffbunny";
+        String level3animalfile = "./Screens/Game/Animals/buffBunny.txt";
         levels.put("3",new Hashtable<String, String>(){{put("sequence",level3sequence);put("animal",level3animal);put("file",level3animalfile);}});
     }
 
@@ -244,5 +262,11 @@ public class GameHandler {
         resultScreens.add(3, stringManipulator.removeLastNewLine(tempDefeatScreen));
         String tempLevelClearScreen = fileManipulator.readFile("./Screens/Game/levelClear.txt", 0, 17);
         levelClearScreen = stringManipulator.removeLastNewLine(tempLevelClearScreen);
+        String tempLevelOneScreen = fileManipulator.readFile("./Screens/Game/Animals/cat.txt", 65, 81);
+        levelOneScreen = stringManipulator.removeLastNewLine(tempLevelOneScreen);
+        String tempLevelTwoScreen = fileManipulator.readFile("./Screens/Game/Animals/bird.txt", 65, 81);
+        levelTwoScreen = stringManipulator.removeLastNewLine(tempLevelTwoScreen);
+        String tempLevelThreeScreen = fileManipulator.readFile("./Screens/Game/Animals/buffBunny.txt", 65, 81);
+        levelThreeScreen = stringManipulator.removeLastNewLine(tempLevelThreeScreen);
     }
 }
