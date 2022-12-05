@@ -93,55 +93,53 @@ public class GameHandler {
         } else {
             System.out.println(levelSelectionScreen.get(0));
             String level = systemScanner.nextLine();
-            while(!level.equalsIgnoreCase("1") && !level.equalsIgnoreCase("2") && !level.equalsIgnoreCase("3")) {
-                System.out.println(levelSelectionScreen.get(1));
-                level = systemScanner.nextLine();
-            }
-            if (level.equals("1")) {
-                // Level 1
-                System.out.println(levelOneScreen);
-                systemScanner.nextLine();
-                while (true) {
-                    if (game.processGame(systemScanner, levels.get("1").get("sequence"), levels.get("1").get("animal"), levels.get("1").get("file"))) {
-                        System.out.println(levelClearScreen);
-                        systemScanner.nextLine();
-                        break;
-                    } else {
-                        System.out.println(resultScreens.get(3));
-                        if (!"Continue".equalsIgnoreCase(systemScanner.nextLine())) {
+            if (level.equalsIgnoreCase("1") && !level.equalsIgnoreCase("2") && !level.equalsIgnoreCase("3")) {
+                if (level.equals("1")) {
+                    // Level 1
+                    System.out.println(levelOneScreen);
+                    systemScanner.nextLine();
+                    while (true) {
+                        if (game.processGame(systemScanner, levels.get("1").get("sequence"), levels.get("1").get("animal"), levels.get("1").get("file"))) {
+                            System.out.println(levelClearScreen);
+                            systemScanner.nextLine();
                             break;
+                        } else {
+                            System.out.println(resultScreens.get(3));
+                            if (!"Continue".equalsIgnoreCase(systemScanner.nextLine())) {
+                                break;
+                            }
                         }
                     }
-                }
-            } else if (level.equals("2")) {
-                // Level 2
-                System.out.println(levelTwoScreen);
-                systemScanner.nextLine();
-                while (true) {
-                    if (game.processGame(systemScanner, levels.get("2").get("sequence"), levels.get("2").get("animal"), levels.get("2").get("file"))) {
-                        System.out.println(levelClearScreen);
-                        systemScanner.nextLine();
-                        break;
-                    } else {
-                        System.out.println(resultScreens.get(3));
-                        if (!"Continue".equalsIgnoreCase(systemScanner.nextLine())) {
+                } else if (level.equals("2")) {
+                    // Level 2
+                    System.out.println(levelTwoScreen);
+                    systemScanner.nextLine();
+                    while (true) {
+                        if (game.processGame(systemScanner, levels.get("2").get("sequence"), levels.get("2").get("animal"), levels.get("2").get("file"))) {
+                            System.out.println(levelClearScreen);
+                            systemScanner.nextLine();
                             break;
+                        } else {
+                            System.out.println(resultScreens.get(3));
+                            if (!"Continue".equalsIgnoreCase(systemScanner.nextLine())) {
+                                break;
+                            }
                         }
-                    }
-                }            
-            } else if (level.equals("3")) {
-                // Level 3
-                System.out.println(levelThreeScreen);
-                systemScanner.nextLine();
-                while (true) {
-                    if (game.processGame(systemScanner, levels.get("3").get("sequence"), levels.get("3").get("animal"), levels.get("3").get("file"))) {
-                        System.out.println(levelClearScreen);
-                        systemScanner.nextLine();
-                        break;
-                    } else {
-                        System.out.println(resultScreens.get(3));
-                        if (!"Continue".equalsIgnoreCase(systemScanner.nextLine())) {
+                    }            
+                } else if (level.equals("3")) {
+                    // Level 3
+                    System.out.println(levelThreeScreen);
+                    systemScanner.nextLine();
+                    while (true) {
+                        if (game.processGame(systemScanner, levels.get("3").get("sequence"), levels.get("3").get("animal"), levels.get("3").get("file"))) {
+                            System.out.println(levelClearScreen);
+                            systemScanner.nextLine();
                             break;
+                        } else {
+                            System.out.println(resultScreens.get(3));
+                            if (!"Continue".equalsIgnoreCase(systemScanner.nextLine())) {
+                                break;
+                            }
                         }
                     }
                 }

@@ -35,6 +35,12 @@ public class Game {
     }
 
     private boolean playGame(Scanner systemScanner, String sequence, String animal) {
+        // Initial Start Blank
+        printHearts(3);
+        System.out.println(blankScreen);
+        timeManipulator.sleepMilliseconds(1000);
+
+        // Game Initialization
         int lives = 3;
         int count = 0;
         String answer1 = "";
@@ -99,6 +105,9 @@ public class Game {
                     printHearts(lives);
                     System.out.println(goodJobScreen);
                     timeManipulator.sleepMilliseconds(800);
+                    printHearts(lives);
+                    System.out.println(blankScreen);
+                    timeManipulator.sleepMilliseconds(500);
                 }
                 answer1 = "";
                 answer2 = "";
