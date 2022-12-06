@@ -3,15 +3,17 @@ import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Scanner; // Import the Scanner class to read text files
 
+import Functions.Manipulator;
 import Functions.StringManipulator;
 
 public class StartingScreen {
-    private static StringManipulator stringManipulator;
+    private static Manipulator stringManipulator;
     private static String startingScreen;
 
     public StartingScreen() {
-       makeStringManipulator();
-       makeStartingScreen();
+        ManipulatorMaker makeStringManipulator = new StringManipulatorMaker();
+        stringManipulator = makeStringManipulator.makeManipulator();
+        makeStartingScreen();
     }
 
     public boolean processStartingScreen(Scanner systemScanner) {
@@ -27,9 +29,6 @@ public class StartingScreen {
       System.out.println(screen);
     }
 
-    private void makeStringManipulator() {
-      stringManipulator = new StringManipulator();
-    }
     private void makeStartingScreen() {
       if (startingScreen == null) {
           try {
@@ -41,7 +40,7 @@ public class StartingScreen {
                 screen = screen + data + "\n";
               }
               myReader.close();
-              startingScreen = stringManipulator.removeLastNewLine(screen);
+              startingScreen = ((StringManipulator) stringManipulator).removeLastNewLine(screen);
             } catch (FileNotFoundException e) {
               System.out.println("An error occurred.");
               e.printStackTrace();

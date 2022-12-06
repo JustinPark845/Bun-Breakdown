@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class FileManipulator {
+public class FileManipulator implements Manipulator {
     public String readFile(String filePath, int lineStart, int lineEnd) {
         StringBuilder finalString = new StringBuilder();
         try {

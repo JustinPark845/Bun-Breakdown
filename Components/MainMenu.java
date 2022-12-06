@@ -2,22 +2,26 @@ package Components;
 import java.util.Scanner; // Import the Scanner class to read text files
 
 import Functions.FileManipulator;
+import Functions.Manipulator;
 import Functions.StringManipulator;
 import Functions.TimeManipulator;
 
 public class MainMenu {
-    private static FileManipulator fileManipulator;
-    private static StringManipulator stringManipulator;
-    private static TimeManipulator timeManipulator;
+    private static Manipulator fileManipulator;
+    private static Manipulator stringManipulator;
+    private static Manipulator timeManipulator;
     private static String mainMenuScreenOne;
     private static String mainMenuScreenTwo;
     private static String invalidInputScreen;
     private static String tutorialScreen;
 
     public MainMenu() {
-        makeFileManipulator();
-        makeStringManipulator();
-        makeTimeManipulator();
+        ManipulatorMaker makeFileManipulator = new FileManipulatorMaker();
+        fileManipulator = makeFileManipulator.makeManipulator();
+        ManipulatorMaker makeStringManipulator = new StringManipulatorMaker();
+        stringManipulator = makeStringManipulator.makeManipulator();
+        ManipulatorMaker makeTimeManipulator = new TimeManipulatorMaker();
+        timeManipulator = makeTimeManipulator.makeManipulator();
         makeMainMenuScreens();
     }
 
@@ -46,34 +50,21 @@ public class MainMenu {
         } else {
             System.out.println(mainMenuScreenOne);
             for (int i = 0; i < 2; i++) {
-                timeManipulator.sleepMilliseconds(100);
+                ((TimeManipulator) timeManipulator).sleepMilliseconds(100);
                 System.out.println(mainMenuScreenTwo);
-                timeManipulator.sleepMilliseconds(100);
+                ((TimeManipulator) timeManipulator).sleepMilliseconds(100);
                 System.out.println(mainMenuScreenOne);
             }
         }
     }
-
-    private FileManipulator makeFileManipulator() {
-        if (fileManipulator == null) {
-          fileManipulator = new FileManipulator();
-        }
-        return fileManipulator;
-    }
-    private void makeStringManipulator() {
-        stringManipulator = new StringManipulator();
-    }
-    private void makeTimeManipulator() {
-        timeManipulator = new TimeManipulator();
-    }
     private void makeMainMenuScreens() {
-        String tempMainMenuScreenOne = fileManipulator.readFile("./Screens/Menu/mainMenu.txt", 0, 17);
-        mainMenuScreenOne = stringManipulator.removeLastNewLine(tempMainMenuScreenOne);
-        String tempMainMenuScreenTwo = fileManipulator.readFile("./Screens/Menu/mainMenu.txt", 18, 34);
-        mainMenuScreenTwo = stringManipulator.removeLastNewLine( tempMainMenuScreenTwo);
-        String tempInvalidInputScreen = fileManipulator.readFile("./Screens/Menu/mainMenu.txt", 35, 51);
-        invalidInputScreen = stringManipulator.removeLastNewLine(tempInvalidInputScreen);
-        String tempTutorialScreen = fileManipulator.readFile("./Screens/Menu/tutorial.txt", 0, 17);
-        tutorialScreen = stringManipulator.removeLastNewLine(tempTutorialScreen);
+        String tempMainMenuScreenOne = ((FileManipulator) fileManipulator).readFile("./Screens/Menu/mainMenu.txt", 0, 17);
+        mainMenuScreenOne = ((StringManipulator) stringManipulator).removeLastNewLine(tempMainMenuScreenOne);
+        String tempMainMenuScreenTwo = ((FileManipulator) fileManipulator).readFile("./Screens/Menu/mainMenu.txt", 18, 34);
+        mainMenuScreenTwo = ((StringManipulator) stringManipulator).removeLastNewLine( tempMainMenuScreenTwo);
+        String tempInvalidInputScreen = ((FileManipulator) fileManipulator).readFile("./Screens/Menu/mainMenu.txt", 35, 51);
+        invalidInputScreen = ((StringManipulator) stringManipulator).removeLastNewLine(tempInvalidInputScreen);
+        String tempTutorialScreen = ((FileManipulator) fileManipulator).readFile("./Screens/Menu/tutorial.txt", 0, 17);
+        tutorialScreen = ((StringManipulator) stringManipulator).removeLastNewLine(tempTutorialScreen);
     }
 }

@@ -2,7 +2,7 @@ package Functions;
 
 import java.util.concurrent.TimeUnit;
 
-public class TimeManipulator {
+public class TimeManipulator implements Manipulator {
     public void sleepMilliseconds(int t) {
         try {
             TimeUnit.MILLISECONDS.sleep(t);
