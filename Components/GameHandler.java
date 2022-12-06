@@ -93,7 +93,7 @@ public class GameHandler {
         } else {
             System.out.println(levelSelectionScreen.get(0));
             String level = systemScanner.nextLine();
-            if (level.equalsIgnoreCase("1") && !level.equalsIgnoreCase("2") && !level.equalsIgnoreCase("3")) {
+            if (level.equalsIgnoreCase("1") || level.equalsIgnoreCase("2") || level.equalsIgnoreCase("3")) {
                 if (level.equals("1")) {
                     // Level 1
                     System.out.println(levelOneScreen);

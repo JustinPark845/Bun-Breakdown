@@ -13,7 +13,7 @@ public class Game {
     private static FileManipulator fileManipulator = null;
     private static StringManipulator stringManipulator;
     private static TimeManipulator timeManipulator = null;
-    private ArrayList<Move> moves = new ArrayList<Move>();
+    private static ArrayList<String> moves = new ArrayList<String>();
     private static List<String> countdownScreens = new ArrayList<String>();
     private static Hashtable<String, String> animalScreens = new Hashtable<String, String>();
     private static String blankScreen;
@@ -31,12 +31,12 @@ public class Game {
 
     public boolean processGame(Scanner systemScanner, String sequence, String animal, String filePath) {
         makeAnimalScreens(filePath);
-        this.moves = sequence;
+        makeMoves(sequence);
         countdown();
-        return playGame(systemScanner, sequence, animal);
+        return playGame(systemScanner, animal, iterator());
     }
 
-    private boolean playGame(Scanner systemScanner, String sequence, String animal) {
+    private boolean playGame(Scanner systemScanner, String animal, Iterator<String> iter) {
         // Initial Start Blank
         printHearts(3);
         System.out.println(blankScreen);
@@ -47,18 +47,17 @@ public class Game {
         int count = 0;
         String answer1 = "";
         String answer2 = "";
-        for (int i = 0; i < sequence.length(); i++) {
+        while (iter.hasNext()) {
             if (lives < 1) {
                 return false;
             }
-            String step = "" + sequence.charAt(i);
+            String step = "" + iter.next();
             if (step.equals("w")) {
                 answer1 += "w";
                 answer2 += "i";
                 printHearts(lives);
                 System.out.println(animalScreens.get("up"));
-                i++;
-                String time = "" + sequence.charAt(i);
+                String time = "" + iter.next();
                 pauseTimer(time,lives);
                 count = count+2;
             } else if (step.equals("s")) {
@@ -66,8 +65,7 @@ public class Game {
                 answer2 += "k";
                 printHearts(lives);
                 System.out.println(animalScreens.get("down"));
-                i++;
-                String time = "" + sequence.charAt(i);
+                String time = "" + iter.next();
                 pauseTimer(time,lives);
                 count = count+2;
             } else if (step.equals("a")) {
@@ -75,8 +73,7 @@ public class Game {
                 answer2 += "j";
                 printHearts(lives);
                 System.out.println(animalScreens.get("left"));
-                i++;
-                String time = "" + sequence.charAt(i);
+                String time = "" + iter.next();
                 pauseTimer(time,lives);
                 count = count+2;
             } else if (step.equals("d")) {
@@ -84,8 +81,7 @@ public class Game {
                 answer2 += "l";
                 printHearts(lives);
                 System.out.println(animalScreens.get("right"));
-                i++;
-                String time = "" + sequence.charAt(i);
+                String time = "" + iter.next();
                 pauseTimer(time,lives);
                 count = count+2;
             } else {
@@ -102,7 +98,7 @@ public class Game {
                         timeManipulator.sleepMilliseconds(200);
                     }
                     --lives;
-                    i -= count + 1;
+                    iter.goPrevious(count + 1);
                 } else {
                     printHearts(lives);
                     System.out.println(goodJobScreen);
@@ -154,40 +150,34 @@ public class Game {
         System.out.println(blankScreen);
     }
 
+    private void makeMoves(String sequence) {
+        moves.clear();
+        for (int i = 0; i < sequence.length(); i++) {
+            moves.add(""+sequence.charAt(i));
+        }
+    }
 
-
-
-
-    public Iterator<Move> iterator()
+    public Iterator<String> iterator()
 	{
 		return new GameIterator();
 	}
 
-	private class GameIterator implements Iterator<Move>
-	{
+	private class GameIterator implements Iterator<String> {
 		private int count;
 
-		public GameIterator()
-		{
+		public GameIterator() {
 			count = 0;
 		}
-
-		public boolean hasNext()
-		{
-			return count < sequence.size();
+		public boolean hasNext() {
+			return count < moves.size();
+		}
+		public String next() {
+            return moves.get(count++);
 		}
 
-		public Book next()
-		{
-			if (hasNext())
-			{
-				return sequence.get(count++);
-			}
-			else
-			{
-				return new NoSuchElementException("off end of list");
-			}
-		}
+        public void goPrevious(int i) {
+            count -= i;
+        }
 	}
 
     private FileManipulator makeFileManipulator() {
