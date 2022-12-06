@@ -13,6 +13,7 @@ public class Game {
     private static FileManipulator fileManipulator = null;
     private static StringManipulator stringManipulator;
     private static TimeManipulator timeManipulator = null;
+    private ArrayList<Move> moves = new ArrayList<Move>();
     private static List<String> countdownScreens = new ArrayList<String>();
     private static Hashtable<String, String> animalScreens = new Hashtable<String, String>();
     private static String blankScreen;
@@ -30,6 +31,7 @@ public class Game {
 
     public boolean processGame(Scanner systemScanner, String sequence, String animal, String filePath) {
         makeAnimalScreens(filePath);
+        this.moves = sequence;
         countdown();
         return playGame(systemScanner, sequence, animal);
     }
@@ -151,6 +153,42 @@ public class Game {
         System.out.println();
         System.out.println(blankScreen);
     }
+
+
+
+
+
+    public Iterator<Move> iterator()
+	{
+		return new GameIterator();
+	}
+
+	private class GameIterator implements Iterator<Move>
+	{
+		private int count;
+
+		public GameIterator()
+		{
+			count = 0;
+		}
+
+		public boolean hasNext()
+		{
+			return count < sequence.size();
+		}
+
+		public Book next()
+		{
+			if (hasNext())
+			{
+				return sequence.get(count++);
+			}
+			else
+			{
+				return new NoSuchElementException("off end of list");
+			}
+		}
+	}
 
     private FileManipulator makeFileManipulator() {
         if (fileManipulator == null) {
