@@ -1,10 +1,10 @@
-import Components.BunBreakdown;
+import Components.BunBreakdownFacade;
 
 public class Main {
     public static void main(String args[]) {
-        BunBreakdown bunBreakdown = new BunBreakdown();
-        bunBreakdown.setUp();
-        bunBreakdown.play();
-        bunBreakdown.close();
+        BunBreakdownFacade bunBreakdownFacade = new BunBreakdownFacade();
+        bunBreakdownFacade.setUp();
+        bunBreakdownFacade.play();
+        bunBreakdownFacade.close();
     }
 }
