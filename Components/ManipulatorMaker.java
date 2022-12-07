@@ -6,7 +6,7 @@ import Functions.StringManipulator;
 import Functions.TimeManipulator;
 
 interface ManipulatorMaker {
-    Manipulator makeManipulator();
+    public Manipulator makeManipulator();
 }
 
 class FileManipulatorMaker implements ManipulatorMaker
