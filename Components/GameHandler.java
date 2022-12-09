@@ -171,7 +171,7 @@ public class GameHandler {
         String level2animalfile = "./Screens/Game/Animals/bird.txt";
         levels.put("2",new Hashtable<String, String>(){{put("sequence",level2sequence);put("animal",level2animal);put("file",level2animalfile);}});
         // Level 3
-        String level3sequence = "w2w1w2s2s1s2d2d1d2a2a1a2/d2a2d2a2s1w1s1/w2d1a2s1d2w1s2w1/d1a1d2d2a2s1w1s2/d1s1a1w2d2s2/w2d2s2a2w2d2s2a2s2d2w2a2s2d2w2a2/w2s1d2a2w1s1d2s2a1d2w2s2s2w2/";
+        String level3sequence = "w2w1w2s2s1s2d2d1d2a2a1a2/d2a2d2a2s1w1s1/w2d1a2s1d2w1s2w1/d1a1d2d2a2s1w1s2/d1s1a1w2d2s2/w2d2s2a2w2d2s2a2s2d2w2a2s2d2w2a2/w1s1a1a1d1d1d1d1w1s1/";
         String level3animal = "buffbunny";
         String level3animalfile = "./Screens/Game/Animals/buffBunny.txt";
         levels.put("3",new Hashtable<String, String>(){{put("sequence",level3sequence);put("animal",level3animal);put("file",level3animalfile);}});

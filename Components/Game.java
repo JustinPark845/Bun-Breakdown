@@ -128,11 +128,11 @@ public class Game {
 
     private void pauseTimer(String note, int lives) {
         if (note.equals("1")) {
-            ((TimeManipulator) timeManipulator).sleepMilliseconds(500);
+            ((TimeManipulator) timeManipulator).sleepMilliseconds(700);
             printBlank(lives);
-            ((TimeManipulator) timeManipulator).sleepMilliseconds(100);
-        } else if (note.equals("2")) {
             ((TimeManipulator) timeManipulator).sleepMilliseconds(200);
+        } else if (note.equals("2")) {
+            ((TimeManipulator) timeManipulator).sleepMilliseconds(300);
             printBlank(lives);
             ((TimeManipulator) timeManipulator).sleepMilliseconds(100);
         }
